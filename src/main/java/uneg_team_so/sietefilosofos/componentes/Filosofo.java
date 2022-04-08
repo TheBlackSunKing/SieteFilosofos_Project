@@ -3,11 +3,16 @@ package uneg_team_so.sietefilosofos.componentes;
 public class Filosofo implements Runnable{ //Un objeto se puede crear dentro de un
                                             // hilo cuando se implementa Runabble
     int tiempoPensando; //Tiempo que se toma el filosofo en pensar
-    int tiempoComiendo;
+    int tiempoComiendo; //Tiempo que debe tomar el filosofo en comida
+    int comCont, penCont; //Veces que comío y penso respectivamente
+    int tiempoEnEspera; //Cuanto tiempo el filosofo espera durante una ronda de comida
+    int tiempoEnEsperaTotal; //Cuanto tiempo este filosofo a tenido que esperar en total en cada ronda
     boolean estaComiendo;
     boolean estaPensando;
-    Palillo palilloIzq, palilloDer; //esto hace referencia a los palillos que el filosofo tiene a su derecha
-    boolean usandopalilloIzq, UsandopalilloDer; // booleanos que indica si el filosofo esta usando alguno de los
+    Palillo palilloIzq, palilloDer; //esto hace referencia a los palillos que el filosofo tiene a sus lados
+    boolean usandoPalilloIzq, UsandoPalilloDer; // booleanos que indica si el filosofo esta usando alguno de los palillos
+
+
     @Override
     public void run() { //@TODO Implementar una repeticion para que esto se repita N veces cada segundo
         if (estaPensando) {
@@ -17,7 +22,7 @@ public class Filosofo implements Runnable{ //Un objeto se puede crear dentro de 
             else
                 alTerminarDePensar();
         }
-        if (estaComiendo) { //@TODO Debemos imnplementar una condicion que el tiempo comiendo solo se reduja si el Filosofo tiene acesso a los dos palillos y que de not ser asi buscarlos
+        if (estaComiendo) { //@TODO Debemos implementar una condicion que el tiempo comiendo solo se reduja si el Filosofo tiene acesso a los dos palillos y que de not ser asi buscarlos
             tiempoComiendo--;
         }
             else alTerminarDeComer();
